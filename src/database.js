@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-const MONGODB_URI = 'mongodb://localhost:27017/notes-app'
+const{ HOST, DATABASE} = process.env;
+const MONGODB_URI = `mongodb://${HOST}/${DATABASE}`
 
 // Connect MongoDB at default port 27017.
 mongoose.connect(MONGODB_URI, {
