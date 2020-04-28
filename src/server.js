@@ -1,22 +1,28 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
+//handlebars
+const Handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
-const routes = require('./routes/index.routes');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
+//End handlebars
 const bodyParser = require('body-parser');
-
+// const routes = require('./routes/index.routes');
 // Initializations
 const app = express();
 
 // Settings
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, "views"))
-app.engine('.hbs',exphbs({
+
+app.engine('.hbs', exphbs({
     defaultLayout: 'main',
-    layoutsDir: app.get(path.join('views','layout')),
-    partialsDir: app.get(path.join('views','partials')),
-    extname: '.hbs'
+    layoutsDir: path.join(app.get('views'), 'layouts'),
+    partialsDir:  path.join(app.get('views'), 'partials'),
+    extname: '.hbs',
+    handlebars : allowInsecurePrototypeAccess(Handlebars)
 }));
+
 app.set('view engine', '.hbs');
 
 // Middlewares
@@ -30,7 +36,8 @@ app.use(morgan('dev'));
 // Global Variables
 
 // Routes
-app.use('/',routes());
+app.use(require('./routes/index.routes'));
+app.use(require('./routes/notes.routes'));
 
 // Statics files
 app.use(express.static(path.join(__dirname, 'public')));
