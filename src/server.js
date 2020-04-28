@@ -9,6 +9,8 @@ const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-acce
 const bodyParser = require('body-parser');
 
 const methodOverride = require('method-override');
+const flash = require('connect-flash');
+const session = require('express-session');
 
 const app = express();
 
@@ -33,12 +35,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(methodOverride('_method'));
-
-
-
+app.use(session({
+    secret:'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(flash());
 
 
 // Global Variables
+app.use((req, res, next) =>{
+    res.locals.success_msg = req.flash('success_msg');
+    next();
+});
 
 // Routes
 app.use(require('./routes/index.routes'));
