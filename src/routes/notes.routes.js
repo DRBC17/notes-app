@@ -11,9 +11,9 @@ const {
 } = require("../controllers/notes.controller");
 
 //New note
-router.get("/note/add", renderNoteForm);
+router.get("/notes/add", renderNoteForm);
 
-router.post("/note/new-note", createNewNote);
+router.post("/notes/new-note", createNewNote);
 
 //Get all notes
 router.get("/notes", renderNotes);

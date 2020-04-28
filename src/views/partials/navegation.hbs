@@ -15,11 +15,24 @@
                 </li>
 
             </ul>
+
             <div class="navbar-nav ml-auto">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle " type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Notes
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/notes">All notes</a>
+                        <a class="dropdown-item" href="/notes/add">Add a note</a>
+                        <div class="dropdwon-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </div>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Login</a>
                 </li>
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="#">Register</a>
                 </li>
             </div>

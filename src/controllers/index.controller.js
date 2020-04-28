@@ -5,7 +5,7 @@ indexController.showIndex = (req, res) => {
 };
 
 indexController.showAbout = (req, res) => {
-    res.render('/About');
+    res.render('about');
 };
 
 

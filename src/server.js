@@ -7,8 +7,9 @@ const exphbs = require('express-handlebars');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 //End handlebars
 const bodyParser = require('body-parser');
-// const routes = require('./routes/index.routes');
-// Initializations
+
+const methodOverride = require('method-override');
+
 const app = express();
 
 // Settings
@@ -26,10 +27,14 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 
 // Middlewares
+app.use(morgan('dev'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use(morgan('dev'));
+app.use(methodOverride('_method'));
+
+
 
 
 
